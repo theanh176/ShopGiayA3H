@@ -25,6 +25,15 @@
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
     <!-- custom css file link  -->
     <link rel="stylesheet" href="css/stylehome.css">
 
@@ -37,13 +46,28 @@
 
     <a href="<c:url value = "/index.jsp"/>" class="logo"><i class="fas fa-utensils"></i>resto.</a>
 
-    <nav class="navbar">
-        <a class="active" href="<c:url value = "/product"/>">All</a>
-        <c:forEach items="${category}" var="cat">
-        <a href="<c:url value = "/productbyid?cateid=${cat.cid}"/>">${cat.cname}</a>
-        </c:forEach>
-    </nav>
+    <nav class="navbar" style="min-height: 0px; margin-bottom: 0px;">
+<%--        <a class="active" href="<c:url value = "/product"/>">All</a>--%>
+<%--        <c:forEach items="${category}" var="cat">--%>
+<%--        <a href="<c:url value = "/productbyid?cateid=${cat.cid}"/>">${cat.cname}</a>--%>
+<%--        </c:forEach>--%>
 
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="<c:url value = "/product"/>">Products
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <c:forEach items="${category}" var="cat">
+                                <li><a href="<c:url value = "/productbyid?cateid=${cat.cid}"/>">${cat.cname}</a></li>
+                            </c:forEach>
+                        </ul>
+                    </li>
+                    <li><a href="#">Page 2</a></li>
+                    <li><a href="#">Page 3</a></li>
+                </ul>
+
+
+    </nav>
 
     <div class="icons">
         <i class="fas fa-bars" id="menu-bars"></i>

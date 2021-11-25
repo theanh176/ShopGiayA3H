@@ -35,6 +35,7 @@ public class ProductEntity {
     @JoinColumn(name = "cateId")
     private CategoryEntity cateId;
 
+
     @Column(name = "sale_ID")
     private Integer saleId;
 

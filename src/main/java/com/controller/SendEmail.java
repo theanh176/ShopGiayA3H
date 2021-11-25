@@ -23,8 +23,8 @@ public class SendEmail {
         boolean test = false;
 
         String toEmail = user.getEmail();
-        String fromEmail = "hoangthai7514@gmail.com";
-        String password = "25fnxzgm";
+        String fromEmail = "temporaryleo0512@gmail.com";
+        String password = "tuan0512@";
 
         try {
 
