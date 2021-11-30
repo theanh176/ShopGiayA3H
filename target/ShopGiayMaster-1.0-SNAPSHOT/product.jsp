@@ -47,11 +47,6 @@
     <a href="<c:url value = "/index.jsp"/>" class="logo"><i class="fas fa-utensils"></i>resto.</a>
 
     <nav class="navbar" style="min-height: 0px; margin-bottom: 0px;">
-<%--        <a class="active" href="<c:url value = "/product"/>">All</a>--%>
-<%--        <c:forEach items="${category}" var="cat">--%>
-<%--        <a href="<c:url value = "/productbyid?cateid=${cat.cid}"/>">${cat.cname}</a>--%>
-<%--        </c:forEach>--%>
-
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="<c:url value = "/product"/>">Products
@@ -65,8 +60,6 @@
                     <li><a href="#">Page 2</a></li>
                     <li><a href="#">Page 3</a></li>
                 </ul>
-
-
     </nav>
 
     <div class="icons">
@@ -107,7 +100,7 @@
                 <div class="image">
                     <img src="${pro.image}" alt="">
                     <a href="#" class="fas fa-heart"></a>
-                    <a href="<c:url value = "/detailproduct.jsp"/>" class="fas fa-eye"></a>
+                    <a href="<c:url value = "/detailproductbyid?id=${pro.id}"/>" class="fas fa-eye"></a>
                 </div>
                 <div class="content">
                     <div class="stars">

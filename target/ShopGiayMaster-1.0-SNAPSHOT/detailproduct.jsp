@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: ACER
@@ -53,8 +54,9 @@
             </div>
         </div>
         <!-- card right -->
+        <c:forEach items="${productid}" var="proid">
         <div class = "product-content">
-            <h2 class = "product-title">nike shoes</h2>
+            <h2 class = "product-title">${ proid.name }</h2>
             <a href = "#" class = "product-link">visit nike store</a>
             <div class = "product-rating">
                 <i class = "fas fa-star"></i>
@@ -90,7 +92,7 @@
                 </button>
                 <button type = "button" class = "btn">Compare</button>
             </div>
-
+            </c:forEach>
             <div class = "social-links">
                 <p>Share At: </p>
                 <a href = "#">
