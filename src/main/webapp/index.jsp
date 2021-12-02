@@ -9,12 +9,11 @@
   Time: 8:00 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%
-    ProductDao productDao = new ProductDao();
-    List<ProductEntity> product = productDao.getListProduct();
-    request.setAttribute("product", product);
-
-%>
+<%--<%--%>
+<%--    ProductDao productDao = new ProductDao();--%>
+<%--    List<ProductEntity> product = productDao.getListProduct();--%>
+<%--    request.setAttribute("product", product);--%>
+<%--%>--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -77,42 +76,19 @@
     <div class="swiper-container home-slider">
 
         <div class="swiper-wrapper wrapper">
-
+        <c:forEach items="${product}" var="pro" begin="${product.size() - 5}" end="${product.size()}" step="1">
             <div class="swiper-slide slide">
                 <div class="content">
                     <span>Featured Products</span>
-                    <h3>nike air jordan 1 low light</h3>
-                    <p>Go! Team! Go! The nike air jordan 1 low light smoke grey makes the cut with colours and lettering inspired by going varsity level. They're absolutely first-team worthy.</p>
+                    <h3>${ pro.name }</h3>
+                    <p>${ pro.description }</p>
                     <a href="#" class="btn">order now</a>
                 </div>
                 <div class="image">
                     <img src="images/home-1.jpg" alt="">
                 </div>
             </div>
-
-            <div class="swiper-slide slide">
-                <div class="content">
-                    <span>Featured Products</span>
-                    <h3>MLB Chunky Play LA Dodgers 2021</h3>
-                    <p>is one of the most loved chuky sneakers of 2021 when this eye-catching shoe appears all over the world </p>
-                    <a href="#" class="btn">order now</a>
-                </div>
-                <div class="image">
-                    <img src="images/home-2.jpg" alt="">
-                </div>
-            </div>
-
-            <div class="swiper-slide slide">
-                <div class="content">
-                    <span>Featured Products</span>
-                    <h3>Vans Comfort Old Skool Mule Black</h3>
-                    <p>Today, the famous Vans Sidestripe has become the unmistakable—and instantly recognizable—hallmark of the Vans brand.</p>
-                    <a href="#" class="btn">order now</a>
-                </div>
-                <div class="image">
-                    <img src="images/home-3.jpg" alt="">
-                </div>
-            </div>
+        </c:forEach>
 
         </div>
 

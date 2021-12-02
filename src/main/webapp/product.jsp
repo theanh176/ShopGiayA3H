@@ -7,11 +7,20 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page import="com.entities.ProductEntity" %>
+<%@ page import="com.dao.ProductDao" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.dao.CategoryDao" %>
+<%@ page import="com.entities.CategoryEntity" %>
 <%--<%@ page import="com.dao.ProductDao" %>--%>
 <%--<%--%>
 <%--    ProductEntity product = (ProductEntity) session.getAttribute("product");--%>
 
 <%--%>--%>
+<%
+    CategoryDao categoryDao = new CategoryDao();
+    List<CategoryEntity> category = categoryDao.getListCategory();
+    request.setAttribute("category", category);
+%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -48,6 +57,8 @@
 
     <nav class="navbar" style="min-height: 0px; margin-bottom: 0px;">
                 <ul class="nav navbar-nav">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="<c:url value = "/product"/>">Products
                             <span class="caret"></span></a>
@@ -57,8 +68,6 @@
                             </c:forEach>
                         </ul>
                     </li>
-                    <li><a href="#">Page 2</a></li>
-                    <li><a href="#">Page 3</a></li>
                 </ul>
     </nav>
 
@@ -110,13 +119,15 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star-half-alt"></i>
                     </div>
-                    <h3>${pro.name}</h3>
-                    <input type="hidden" name="description" value="${pro.name}"><br/>
-                    <input type="number" name="quantity" value="1"><br/>
-                    <input type="hidden" name="price" value="${pro.price}"><br/>
+                    <div style="display: flex; align-items: flex-end">
+                        <h3 style="margin: unset">${pro.name}</h3>
+                        <input type="hidden" name="description" value="${pro.name}">
+                        <input type="number" name="quantity" value="1" style="width: 30px; height: auto">
+                    </div>
+                    <input type="hidden" name="price" value="${pro.price}">
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi, accusantium.</p>
                     <span class="price">$ ${pro.price}</span>
-                    <input type="submit" name="action" value="Add To Cart" style="background: green">
+                    <input type="submit" name="action" class="btn" value="Add To Cart">
                 </div>
             </div>
             </form>

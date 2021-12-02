@@ -462,6 +462,25 @@ header .icons #menu-bars{
 .menu .box-container .box:hover{
     transform: scale(1.2);
 }
+
+.menu .box-container .box .content .btn{
+    padding:.6rem 4rem;
+    text-align: center;
+    margin-top: 1rem;
+    display: inline-block;
+    font-size: 1.3rem;
+    color:#fff;
+    background:forestgreen;
+    border-radius: .5rem;
+    overflow:hidden;
+    transition: 0.5s;
+}
+
+.menu .box-container .box .content .btn:hover{
+    font-size: 1.3rem;
+    background: lightgreen;
+}
+
 .review .slide{
     padding:2rem;
     box-shadow:var(--box-shadow);
