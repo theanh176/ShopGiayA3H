@@ -108,7 +108,7 @@
                 <td>$<c:out value="${cart.tong}"/></td>
             </tr>
         </table>
-        <a href="#" class="checkout btn">Proceed To Checkout</a>
+        <a href="<c:url value = "/OrderInfo"/>" class="checkout btn">Proceed To Checkout</a>
         <a href="${pageContext.request.contextPath }/product" class="checkout btn">Continue Shop</a>
 
     </div>

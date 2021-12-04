@@ -1,8 +1,6 @@
 package com.example.shopgiaymaster;
 
-import com.dao.OrderDao;
 import com.entities.OrderEntity;
-import com.entities.ProductEntity;
 import com.mvc.utility.HibernateUtility;
 import org.hibernate.Session;
 import org.hibernate.query.Query;

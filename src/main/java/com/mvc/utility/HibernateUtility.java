@@ -1,9 +1,6 @@
 package com.mvc.utility;
 
-import com.entities.CategoryEntity;
-import com.entities.KhachEntity;
-import com.entities.OrderEntity;
-import com.entities.ProductEntity;
+import com.entities.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -29,6 +26,7 @@ public class HibernateUtility {
         conf.addAnnotatedClass(CategoryEntity.class);
         conf.addAnnotatedClass(ProductEntity.class);
         conf.addAnnotatedClass(OrderEntity.class);
+        conf.addAnnotatedClass(DetailorderEntity.class);
         ServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(conf.getProperties()).build();
         FACTORY = conf.buildSessionFactory();
     }

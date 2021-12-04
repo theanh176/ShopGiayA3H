@@ -119,11 +119,13 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star-half-alt"></i>
                     </div>
-                    <div style="display: flex; align-items: flex-end">
+                    <div style="display: flex; align-items: center">
                         <h3 style="margin: unset">${pro.name}</h3>
-                        <input type="hidden" name="description" value="${pro.name}">
-                        <input type="number" name="quantity" value="1" style="width: 30px; height: auto">
-                    </div>
+                        <input type="hidden" name="productId" value="${pro.id}">
+                        <input type="hidden" name="pion" value="${pro.name}">
+                        <input type="number" name="quantity" value="1" style="width: 30px; height: auto; margin-left: 120px; background: #1A73E8">
+                    </div>roductId" value="${pro.id}">
+                    <input type="hidden" name="description" value="${pro.name}">
                     <input type="hidden" name="price" value="${pro.price}">
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi, accusantium.</p>
                     <span class="price">$ ${pro.price}</span>

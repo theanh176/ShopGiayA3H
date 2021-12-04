@@ -109,4 +109,23 @@ public class ProductDao {
         }
         return products;
     }
+    public ProductEntity getProductById(String id) {
+        Session session = factory.openSession();
+        try {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<ProductEntity> query = builder.createQuery(ProductEntity.class);
+            Root<ProductEntity> root = query.from(ProductEntity.class);
+            query.select(root);
+
+
+            query.where(builder.equal(root.get("id").as(Integer.class), id));
+
+            ProductEntity products = session.createQuery(query).getSingleResult();
+            return products;
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        }
+        return null;
+    }
 }

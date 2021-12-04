@@ -1,5 +1,8 @@
 package com.controller;
 
+import com.dao.ProductDao;
+import com.entities.ProductEntity;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -62,6 +65,11 @@ public class CartController extends HttpServlet {
         String iDescription = request.getParameter("description");
         String iPrice = request.getParameter("price");
         String iQuantity = request.getParameter("quantity");
+        String productId = request.getParameter("productId");
+        System.out.println("product id: " + productId);
+
+        ProductDao productDao = new ProductDao();
+        ProductEntity productEntity = productDao.getProductById(productId);
 
         CartBean cartBean = null;
 
@@ -74,6 +82,6 @@ public class CartController extends HttpServlet {
             session.setAttribute("cart", cartBean);
         }
 
-        cartBean.addCart(iDescription, iPrice, iQuantity);
+        cartBean.addCart(iDescription, iPrice, iQuantity, productEntity);
     }
 }

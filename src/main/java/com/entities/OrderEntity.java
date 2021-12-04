@@ -5,7 +5,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "order123", schema = "shoe_db")
+@Table(name = "orders", schema = "shoe_db")
 public class OrderEntity {
     private int id;
     private Integer totalQuantity;

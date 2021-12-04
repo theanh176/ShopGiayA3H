@@ -1,5 +1,7 @@
 package com.controller;
 
+import com.mvc.utility.SendEmail;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -20,8 +22,8 @@ public class UserVerify extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             //feth form value
             String name = request.getParameter("username");
-//           String email = request.getParameter("useremail");
-            String email = "thaihai1004@gmail.com";
+            String email = request.getParameter("useremail");
+//            String email = "thaihai1004@gmail.com";
             //create instance object of the SendEmail Class
             SendEmail sm = new SendEmail();
             //get the 6-digit code

@@ -1,14 +1,12 @@
-package com.controller;
+package com.mvc.utility;
 
-import java.util.Properties;
-import java.util.Random;
-import javax.mail.Authenticator;
-import javax.mail.Message;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
+import com.controller.User;
+
+import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.util.Properties;
+import java.util.Random;
 
 public class SendEmail {
     //generate vrification code

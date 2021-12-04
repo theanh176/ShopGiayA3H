@@ -1,12 +1,27 @@
 package com.controller;
 
+import com.entities.ProductEntity;
+
 public class CartItemBean {
 
+    private ProductEntity productEntity;
     private String number;
     private String description;
     private double price;
     private int quantity;
     private double TotalCost;
+
+    public CartItemBean(){
+
+    }
+
+    public ProductEntity getProductEntity() {
+        return productEntity;
+    }
+
+    public void setProductEntity(ProductEntity productEntity) {
+        this.productEntity = productEntity;
+    }
 
     public String getNumber() {
         return number;
