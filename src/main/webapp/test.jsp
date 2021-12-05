@@ -12,6 +12,7 @@
     <title>Title</title>
 </head>
 <body>
-    <p data-toggle="dropdown">Chao Mung ${user.userName}</p>
+<%--    <p data-toggle="dropdown">Chao Mung ${user.userName}</p>--%>
+<p>aaatest</p>
 </body>
 </html>

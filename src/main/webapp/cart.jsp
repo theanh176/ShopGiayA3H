@@ -108,7 +108,19 @@
                 <td>$<c:out value="${cart.tong}"/></td>
             </tr>
         </table>
-        <a href="<c:url value = "/OrderInfo"/>" class="checkout btn">Proceed To Checkout</a>
+        <form method="POST" action="order">
+            <label>name</label>
+            <input type="text" class="form-control" placeholder="Name" name="name">
+            <label for="inputEmail4">Email</label>
+            <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="email">
+            <label for="phone">Phone</label>
+            <input type="text" class="form-control" id="phone" placeholder="Phone" name="phone">
+            <label for="inputAddress">Address</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="address">
+
+            <input type="hidden" name="totalPrice" value="<c:out value="${cart.tong}"/>"><br>
+            <button type="submit" class="checkout btn" name="action" value="SaveOrder">Proceed To Checkout</button>
+        </form>
         <a href="${pageContext.request.contextPath }/product" class="checkout btn">Continue Shop</a>
 
     </div>

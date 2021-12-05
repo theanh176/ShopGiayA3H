@@ -33,17 +33,16 @@ public class UserVerify extends HttpServlet {
             User user = new User(name,email,code);
 
             //call the send email method
-            boolean test = sm.sendEmail(user);
+//            boolean test = sm.sendEmail(user, email, String name, String phone, String address, String total);
 
             //check if the email send successfully
-            if(test){
-                HttpSession session  = request.getSession();
-                session.setAttribute("authcode", user);
-                response.sendRedirect("verify.jsp");
-            }else{
-                out.println("Failed to send verification email");
-            }
-
+//            if(test){
+//                HttpSession session  = request.getSession();
+//                session.setAttribute("authcode", user);
+//                response.sendRedirect("verify.jsp");
+//            }else{
+//                out.println("Failed to send verification email");
+//            }
         }
     }
     @Override

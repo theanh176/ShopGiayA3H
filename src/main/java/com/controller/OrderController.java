@@ -2,19 +2,54 @@ package com.controller;
 
 import com.dao.OrderDao;
 import com.entities.OrderEntity;
+import com.mvc.utility.SendEmail;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 @WebServlet(name = "OrderControl", urlPatterns = {"/order","/Order"})
 public class OrderController extends HttpServlet  {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+
+            // Dữ liệu truyền vào trong html mail
+            String name = request.getParameter("name");
+            String email = request.getParameter("email");
+            String phone = request.getParameter("phone");
+            String address = request.getParameter("address");
+            String total = request.getParameter("totalPrice");
+            //create instance object of the SendEmail Class
+            SendEmail sm = new SendEmail();
+            //get the 6-digit code
+            String code = sm.getRandom();
+
+            //craete new user using all information
+            User user = new User(name,email,code);
+
+            //call the send email method
+            boolean test = sm.sendEmail(user, email, name, phone, address, total);
+
+            //check if the email send successfully
+            if(test){
+                HttpSession session  = request.getSession();
+                session.setAttribute("authcode", user);
+//                response.sendRedirect("verify.jsp");
+            }else{
+                out.println("Failed to send verification email");
+            }
+        }
+    }
     public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws SecurityException, IOException {
+            throws SecurityException, IOException, ServletException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
 
@@ -22,6 +57,7 @@ public class OrderController extends HttpServlet  {
 
         if (iAction != null && !iAction.equals("")) {
             if (iAction.equals("SaveOrder")) {
+                processRequest(request, response);
                 saveOrder(request);
             } else if (iAction.equals("Update")) {
 
@@ -33,7 +69,7 @@ public class OrderController extends HttpServlet  {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws SecurityException, IOException {
+            throws SecurityException, IOException, ServletException {
         doPost(request, response);
     }
 
@@ -44,7 +80,7 @@ public class OrderController extends HttpServlet  {
         String phone = request.getParameter("phone");
         String address = request.getParameter("address");
 
-        System.out.println("email: "+address);
+        System.out.println("email: "+email);
 
         CartBean cartBean = null;
 
@@ -79,7 +115,5 @@ public class OrderController extends HttpServlet  {
         }
         System.out.println(orderEntity);
         orderDao.insertOrderAndDetail(orderEntity,cartItemBeans);
-
-
     }
 }

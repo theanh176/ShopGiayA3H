@@ -12,6 +12,6 @@
         <url-pattern>/CartController</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
-        <welcome-file>profile</welcome-file>
+        <welcome-file>index1</welcome-file>
     </welcome-file-list>
 </web-app>
