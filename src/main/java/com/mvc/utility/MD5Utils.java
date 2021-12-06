@@ -28,6 +28,10 @@ public class MD5Utils {
         return sb.toString();
     }
 
+    public static String hashcode(String key) {
+        byte[] md5InBytes = MD5Utils.digest(key.getBytes(UTF_8));
+        return bytesToHex(md5InBytes);
+    }
     public static void main(String[] args) {
 
         String pText = "22";

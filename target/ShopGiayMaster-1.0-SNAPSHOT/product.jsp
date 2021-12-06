@@ -57,8 +57,9 @@
 
     <nav class="navbar" style="min-height: 0px; margin-bottom: 0px;">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
+                    <li><a href="<c:url value = "/index1"/>">Home</a></li>
+                    <li><a href="<c:url value = "/index1#dishes"/>">best</a></li>
+                    <li><a href="<c:url value = "/about.jsp"/>">About</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="<c:url value = "/product"/>">Products
                             <span class="caret"></span></a>
@@ -68,6 +69,7 @@
                             </c:forEach>
                         </ul>
                     </li>
+                    <li><a href="#">review</a></li>
                 </ul>
     </nav>
 
@@ -97,7 +99,7 @@
 <!-- menu section starts  -->
 
 <section class="menu" id="menu">
-    <br><br><br><br>
+    <br><br>
     <h3 class="sub-heading"> our product </h3>
     <h1 class="heading"> today's speciality </h1>
 
@@ -127,7 +129,7 @@
                     </div>roductId" value="${pro.id}">
                     <input type="hidden" name="description" value="${pro.name}">
                     <input type="hidden" name="price" value="${pro.price}">
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi, accusantium.</p>
+                    <p>${ pro.description }</p>
                     <span class="price">$ ${pro.price}</span>
                     <input type="submit" name="action" class="btn" value="Add To Cart">
                 </div>
@@ -201,12 +203,6 @@
 </section>
 
 <!-- footer section ends -->
-
-<!-- loader part  -->
-<div class="loader-container">
-    <img src="https://media.giphy.com/media/daak2Jqk5NZN2G4PKD/giphy.gif" alt="">
-</div>
-
 
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>

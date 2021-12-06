@@ -3,6 +3,7 @@ package com.mvc.utility;
 import com.controller.CartBean;
 import com.controller.CartItemBean;
 import com.controller.User;
+import com.dao.OrderDao;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -23,7 +24,7 @@ public class SendEmail {
     }
 
     //send email to the user email
-    public boolean sendEmail(User user, String email, String name, String phone, String address, String total) {
+    public boolean sendEmail(User user, String email, String name, String phone, String address, String total, String rootlink) {
         boolean test = false;
 
         String toEmail = user.getEmail();
@@ -56,11 +57,15 @@ public class SendEmail {
             mess.setFrom(new InternetAddress(fromEmail));
             //set to email address or destination email address
             mess.setRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
-
+            OrderDao orderDao = new OrderDao();
+            Integer oid = orderDao.getLastOrderId();
+            String hashemail = MD5Utils.hashcode(email);
+            String link = "http://localhost:8080/profile?oid="+oid+"&email="+hashemail+"";
             //set email subject
             mess.setSubject("User Email Verification");
             long millis=System.currentTimeMillis();
             java.sql.Date nowDate=new java.sql.Date(millis);
+
             //set message text
 
 //            mess.setText("Registered successfully.Please verify your account using this code: " + email);
@@ -203,7 +208,7 @@ public class SendEmail {
                     "                                                </tr>\n" +
                     "                                                <tr>\n" +
                     "                                                    <td style=\"width: 55%; font-size: 14px; line-height: 18px; color: #666666; padding-bottom: 10px;\">\n" +
-                    "                                                        Price Ship: 50$\n" +
+                    "                                                        Price Ship: "+link+"\n" +
                     "                                                    </td>\n" +
                     "                                                    <td style=\"width: 45%; font-size: 14px; line-height: 18px; color: #666666; padding-bottom: 10px;\">\n" +
                     "                                                        Total: "+total+"\n" +
@@ -228,7 +233,7 @@ public class SendEmail {
                     "    </body>\n" +
                     "</html>","text/html");
 
-            //send the message
+//            //send the message
             Transport.send(mess);
 
             test=true;

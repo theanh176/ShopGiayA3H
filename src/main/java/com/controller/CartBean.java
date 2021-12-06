@@ -138,7 +138,7 @@ public class CartBean {
             quan += cartItem.getQuantity();
         }
         setTotal(plus);
-        setTong(plus + 5000);
+        setTong(plus + 50);
         setQuantity(quan);
     }
 }

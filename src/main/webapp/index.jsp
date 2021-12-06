@@ -54,7 +54,6 @@
         <a href="<c:url value = "/cart.jsp"/>" class="fas fa-shopping-cart"></a>
         <a href="<c:url value = "/register.jsp"/>" class="fas fa-user-plus"></a>
         <a href="<c:url value = "/login.jsp"/>" class="fas fa-sign-in-alt"></a>
-
     </div>
 
 </header>
@@ -72,28 +71,24 @@
 <!-- home section starts  -->
 
 <section class="home" id="home">
-
     <div class="swiper-container home-slider">
-
         <div class="swiper-wrapper wrapper">
-        <c:forEach items="${product}" var="pro" begin="${product.size() - 5}" end="${product.size()}" step="1">
+            <c:forEach items="${product}" var="pro" begin="${product.size() - 5}" end="${product.size()}" step="1">
             <div class="swiper-slide slide">
                 <div class="content">
                     <span>Featured Products</span>
                     <h3>${ pro.name }</h3>
                     <p>${ pro.description }</p>
-                    <a href="#" class="btn">order now</a>
+                    <a href="<c:url value = "/detailproductbyid?id=${pro.id}"/>" class="btn">order now</a>
                 </div>
                 <div class="image">
-                    <img src="images/home-1.jpg" alt="">
+                    <img src="${ pro.image }" alt="">
                 </div>
             </div>
-        </c:forEach>
-
+            </c:forEach>
         </div>
 
         <div class="swiper-pagination"></div>
-
     </div>
 
 </section>
@@ -109,9 +104,10 @@
 
     <div class="box-container">
         <c:forEach items="${product}" var="pro" begin="${product.size() - 5}" end="${product.size()}" step="1">
-        <div class="box">
+            <form method="POST" action="CartController">
+            <div class="box">
             <a href="#" class="fas fa-heart"></a>
-            <a href="<c:url value = "/detailproduct.jsp"/>" class="fas fa-eye"></a>
+            <a href="<c:url value = "/detailproductbyid?id=${pro.id}"/>" class="fas fa-eye"></a>
             <img src="images/product-1.jpg" alt="">
             <h3>${pro.name}</h3>
             <div class="stars">
@@ -122,8 +118,14 @@
                 <i class="fas fa-star-half-alt"></i>
             </div>
             <span>$${pro.price}</span>
-            <a href="#" class="btn">add to cart</a>
-        </div>
+                <input type="hidden" name="productId" value="${pro.id}">
+                <input type="hidden" name="pion" value="${pro.name}">
+                <input type="hidden" name="quantity" value="1" style="width: 30px; height: auto; margin-left: 120px; background: #1A73E8">
+                <input type="hidden" name="description" value="${pro.name}">
+                <input type="hidden" name="price" value="${pro.price}">
+                <input type="submit" name="action" class="btn" value="Add To Cart">
+            </div>
+            </form>
         </c:forEach>
 
         <div class="box">
@@ -272,11 +274,6 @@
 </section>
 
 <!-- footer section ends -->
-
-<!-- loader part  -->
-<div class="loader-container">
-    <img src="https://media.giphy.com/media/daak2Jqk5NZN2G4PKD/giphy.gif" alt="">
-</div>
 
 
 

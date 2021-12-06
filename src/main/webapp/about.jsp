@@ -28,14 +28,13 @@
 <!-- header section starts      -->
 
 <header>
-
-    <a href="<c:url value = "/index.jsp"/>" class="logo"><i class="fas fa-utensils"></i>resto.</a>
+    <a href="<c:url value = "/index1"/>" class="logo"><i class="fas fa-utensils"></i>resto.</a>
 
     <nav class="navbar">
-        <a href="<c:url value = "/index.jsp"/>">home</a>
-        <a href="<c:url value = "/index.jsp#dishes"/>">best</a>
+        <a href="<c:url value = "/index1"/>">home</a>
+        <a href="<c:url value = "/index1#dishes"/>">best</a>
         <a class="active" href="#about">about</a>
-        <a href="<c:url value = "/product.jsp"/>">product</a>
+        <a href="<c:url value = "/product"/>">product</a>
         <a href="">review</a>
     </nav>
 
@@ -171,10 +170,6 @@
 
 <!-- footer section ends -->
 
-<!-- loader part  -->
-<div class="loader-container">
-    <img src="https://media.giphy.com/media/daak2Jqk5NZN2G4PKD/giphy.gif" alt="">
-</div>
 
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>

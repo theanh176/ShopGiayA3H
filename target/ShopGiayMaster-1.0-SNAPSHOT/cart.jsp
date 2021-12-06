@@ -26,13 +26,13 @@
 <body>
 <header>
 
-    <a href="<c:url value = "/index.jsp"/>" class="logo"><i class="fas fa-utensils"></i>resto.</a>
+    <a href="<c:url value = "/index1"/>" class="logo"><i class="fas fa-utensils"></i>resto.</a>
 
     <nav class="navbar">
-        <a href="<c:url value = "/index.jsp"/>">home</a>
-        <a href="<c:url value = "/index.jsp#dishes"/>">best</a>
+        <a href="<c:url value = "/index1"/>">home</a>
+        <a href="<c:url value = "/index1#dishes"/>">best</a>
         <a href="<c:url value = "/about.jsp"/>">about</a>
-        <a href="<c:url value = "/product.jsp"/>">product</a>
+        <a href="<c:url value = "/product"/>">product</a>
         <a href="#review">review</a>
     </nav>
 
@@ -101,7 +101,7 @@
             </tr>
             <tr>
                 <td>Tax</td>
-                <td>$5000</td>
+                <td>$50</td>
             </tr>
             <tr>
                 <td>Total</td>
@@ -118,10 +118,12 @@
             <label for="inputAddress">Address</label>
             <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="address">
 
+            <p>${pageContext.request.contextPath}/product</p>
+<%--            <input type="hidden" name="rootlink" value="${pageContext.request.contextPath}/product">--%>
             <input type="hidden" name="totalPrice" value="<c:out value="${cart.tong}"/>"><br>
             <button type="submit" class="checkout btn" name="action" value="SaveOrder">Proceed To Checkout</button>
         </form>
-        <a href="${pageContext.request.contextPath }/product" class="checkout btn">Continue Shop</a>
+        <a href="${pageContext.request.contextPath}/product" class="checkout btn">Continue Shop</a>
 
     </div>
 </div>

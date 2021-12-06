@@ -27,7 +27,9 @@ public class OrderController extends HttpServlet  {
             String phone = request.getParameter("phone");
             String address = request.getParameter("address");
             String total = request.getParameter("totalPrice");
+            String link = request.getParameter("rootlink");
             //create instance object of the SendEmail Class
+            System.out.println("link"+link);
             SendEmail sm = new SendEmail();
             //get the 6-digit code
             String code = sm.getRandom();
@@ -36,7 +38,7 @@ public class OrderController extends HttpServlet  {
             User user = new User(name,email,code);
 
             //call the send email method
-            boolean test = sm.sendEmail(user, email, name, phone, address, total);
+            boolean test = sm.sendEmail(user, email, name, phone, address, total, link);
 
             //check if the email send successfully
             if(test){
@@ -57,8 +59,8 @@ public class OrderController extends HttpServlet  {
 
         if (iAction != null && !iAction.equals("")) {
             if (iAction.equals("SaveOrder")) {
-                processRequest(request, response);
                 saveOrder(request);
+                processRequest(request, response);
             } else if (iAction.equals("Update")) {
 
             } else if (iAction.equals("Delete")) {
