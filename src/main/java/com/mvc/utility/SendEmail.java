@@ -133,7 +133,7 @@ public class SendEmail {
                     "                                <!-- Start address Section -->\n" +
                     "                                <tr>\n" +
                     "                                    <td style=\"padding-top: 0;\">\n" +
-                    "                                        <table width=\"560\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"devicewidthinner\" style=\"border-bottom: 1px solid #bbbbbb;\">\n" +
+                    "                                        <table width=\"560\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"devicewidthinner\" style=\"border-bottom: 1px solid #bbbbbb; margin-left: 70px;\">\n" +
                     "                                            <tbody>\n" +
                     "                                                <tr>\n" +
                     "                                                    <td style=\"width: 55%; font-size: 16px; font-weight: bold; color: #666666; padding-bottom: 5px;\">\n" +
@@ -148,7 +148,7 @@ public class SendEmail {
                     "                                                        So 1, Vo Van Ngan\n" +
                     "                                                    </td>\n" +
                     "                                                    <td style=\"width: 45%; font-size: 14px; line-height: 18px; color: #666666;\">\n" +
-                    "                                                        James C Painter\n" +
+                    "                                                        "+address+"\n" +
                     "                                                    </td>\n" +
                     "                                                </tr>\n" +
                     "                                                <tr>\n" +
@@ -156,7 +156,6 @@ public class SendEmail {
                     "                                                        Phuong Linh Chieu\n" +
                     "                                                    </td>\n" +
                     "                                                    <td style=\"width: 45%; font-size: 14px; line-height: 18px; color: #666666;\">\n" +
-                    "                                                        dia chi\n" +
                     "                                                    </td>\n" +
                     "                                                </tr>\n" +
                     "                                                <tr>\n" +
@@ -177,7 +176,7 @@ public class SendEmail {
                     "                                <!-- Start payment method Section -->\n" +
                     "                                <tr>\n" +
                     "                                    <td style=\"padding: 0 10px;\">\n" +
-                    "                                        <table width=\"560\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"devicewidthinner\">\n" +
+                    "                                        <table width=\"560\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"devicewidthinner\" style=\"margin-left: 80px;\">\n" +
                     "                                            <tbody>\n" +
                     "                                                <tr>\n" +
                     "                                                    <td colspan=\"2\" style=\"font-size: 16px; font-weight: bold; color: #666666; padding-bottom: 5px;\">\n" +
@@ -207,10 +206,13 @@ public class SendEmail {
                     "                                                    </td>\n" +
                     "                                                </tr>\n" +
                     "                                                <tr>\n" +
-                    "                                                    <td style=\"width: 55%; font-size: 14px; line-height: 18px; color: #666666; padding-bottom: 10px;\">\n" +
-                    "                                                        Price Ship: "+link+"\n" +
+                    "                                                    <td style=\"width: 55%; font-size: 14px; line-height: 18px; color: #666666;\">\n" +
+                    "                                                        Link Detail Bill: "+link+"\n" +
                     "                                                    </td>\n" +
-                    "                                                    <td style=\"width: 45%; font-size: 14px; line-height: 18px; color: #666666; padding-bottom: 10px;\">\n" +
+                    "                                                    </td>\n" +
+                    "                                                </tr>\n" +
+                    "                                                <tr>\n" +
+                    "                                                    <td style=\"width: 55%; font-size: 14px; line-height: 18px; color: #666666; padding-bottom: 10px;\">\n" +
                     "                                                        Total: "+total+"\n" +
                     "                                                    </td>\n" +
                     "                                                </tr>\n" +
@@ -234,9 +236,9 @@ public class SendEmail {
                     "</html>","text/html");
 
 //            //send the message
-            Transport.send(mess);
-
-            test=true;
+//            Transport.send(mess);
+//
+//            test=true;
 
         } catch (Exception e) {
             e.printStackTrace();

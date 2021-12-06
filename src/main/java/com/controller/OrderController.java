@@ -99,7 +99,7 @@ public class OrderController extends HttpServlet  {
         orderEntity.setEmail(email);
         orderEntity.setPhone(phone);
         orderEntity.setAddress(address);
-        orderEntity.setTotalMoney(cartBean.getTotal());
+        orderEntity.setTotalMoney(cartBean.getTong());
         orderEntity.setTotalQuantity(cartBean.getQuantity());
         orderEntity.setState("Created");
 

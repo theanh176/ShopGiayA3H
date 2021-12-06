@@ -109,17 +109,15 @@
             </tr>
         </table>
         <form method="POST" action="order">
-            <label>name</label>
-            <input type="text" class="form-control" placeholder="Name" name="name">
-            <label for="inputEmail4">Email</label>
-            <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="email">
-            <label for="phone">Phone</label>
-            <input type="text" class="form-control" id="phone" placeholder="Phone" name="phone">
-            <label for="inputAddress">Address</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="address">
+            <label style="font-size: 20px">name: </label>
+            <input type="text" class="" placeholder="Name" name="name" style="background: whitesmoke;border: none ;border-bottom:1px solid #757575;"><br>
+            <label style="font-size: 20px">Email: </label>
+            <input type="email" class="" placeholder="Email" name="email"><br>
+            <label style="font-size: 20px">Phone: </label>
+            <input type="text" class="" placeholder="Phone" name="phone"><br>
+            <label style="font-size: 20px">Address: </label>
+            <input type="text" class="" placeholder="Address" name="address">
 
-            <p>${pageContext.request.contextPath}/product</p>
-<%--            <input type="hidden" name="rootlink" value="${pageContext.request.contextPath}/product">--%>
             <input type="hidden" name="totalPrice" value="<c:out value="${cart.tong}"/>"><br>
             <button type="submit" class="checkout btn" name="action" value="SaveOrder">Proceed To Checkout</button>
         </form>
