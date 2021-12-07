@@ -42,7 +42,7 @@ public class ProfileOrderController extends HttpServlet {
             ProductDao productDao = new ProductDao();
             for (DetailorderEntity detail : detailorderEntities ) {
                 CartItemBean cartItemBean = new CartItemBean();
-                cartItemBean.setProductEntity(productDao.getProductById(String.valueOf(detail.getPid())));
+                cartItemBean.setProductEntity(productDao.getProductById(String.valueOf(detail.getProduct().getId())));
                 cartItemBean.setQuantity(detail.getQuantity());
                 listItem.add(cartItemBean);
             }

@@ -44,7 +44,8 @@ public class DetailorderDao {
             transaction = session.beginTransaction();
             for(DetailorderEntity item : listItem){
                 //dat so oid cho detail
-                item.setOid(oid);
+                OrderDao orderDao = new OrderDao();
+                item.setOrderEntity(orderDao.getOrderById(String.valueOf(oid)));
                 session.save(item);
             }
 
@@ -70,7 +71,7 @@ public class DetailorderDao {
             query.select(root);
 
 
-            query.where(builder.equal(root.get("oid").as(Integer.class), oid));
+            query.where(builder.equal(root.get("orderEntity").get("oid"), Integer.parseInt(oid)));
 
             List<DetailorderEntity> detailorderEntitys = new ArrayList<>();
 

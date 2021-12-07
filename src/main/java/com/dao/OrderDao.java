@@ -45,15 +45,16 @@ public class OrderDao {
             insertOrder(item);
             //Lay Id cua Order moi vua them vao(truoc ham nay phai dung ham luu Order)
             OrderDao orderDao = new OrderDao();
-            int lastOrderId = orderDao.getLastOrderId();
+            OrderEntity lastOrder = orderDao.getLastOrder();
             //tao mot detailorder thay doi thuoc tinh theo tung lineitem va luu
             DetailorderEntity detailorderEntity = new DetailorderEntity();
-            detailorderEntity.setOid(lastOrderId);
+
+            detailorderEntity.setOrderEntity(lastOrder);
 
             DetailorderDao detailorderDao = new DetailorderDao();
 
             for (CartItemBean lineItem : lineItems){
-                detailorderEntity.setPid(lineItem.getProductEntity().getId());
+                detailorderEntity.setProduct(lineItem.getProductEntity());
                 detailorderEntity.setQuantity(lineItem.getQuantity());
                 detailorderDao.insertDetailOrder(detailorderEntity);
             }

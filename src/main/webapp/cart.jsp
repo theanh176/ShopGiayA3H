@@ -109,19 +109,16 @@
             </tr>
         </table>
         <form method="POST" action="order">
-            <label style="font-size: 20px">name: </label>
-            <input type="text" class="" placeholder="Name" name="name" style="background: whitesmoke;border: none ;border-bottom:1px solid #757575;"><br>
-            <label style="font-size: 20px">Email: </label>
-            <input type="email" class="" placeholder="Email" name="email"><br>
-            <label style="font-size: 20px">Phone: </label>
-            <input type="text" class="" placeholder="Phone" name="phone"><br>
-            <label style="font-size: 20px">Address: </label>
-            <input type="text" class="" placeholder="Address" name="address">
+            <input type="text" class="" placeholder="Name" name="name" style="font-size: 20px; border: none ;border-bottom:1px solid #757575; margin-bottom: 10px"><br>
+            <input type="email" class="" placeholder="Email" name="email" style="font-size: 20px; border: none ;border-bottom:1px solid #757575; margin-bottom: 10px"><br>
+            <input type="text" class="" placeholder="Phone" name="phone" style="font-size: 20px; border: none ;border-bottom:1px solid #757575; margin-bottom: 10px"><br>
+            <input type="text" class="" placeholder="Address" name="address" style="font-size: 20px; border: none ;border-bottom:1px solid #757575; margin-bottom: 10px">
 
             <input type="hidden" name="totalPrice" value="<c:out value="${cart.tong}"/>"><br>
-            <button type="submit" class="checkout btn" name="action" value="SaveOrder">Proceed To Checkout</button>
+            <button type="submit" class="checkout btn" name="action" value="SaveOrder">Proceed To Checkout</button><br>
+            <a href="${pageContext.request.contextPath}/product" class="checkout btn" style="margin-left: 25px">Continue Shop</a>
         </form>
-        <a href="${pageContext.request.contextPath}/product" class="checkout btn">Continue Shop</a>
+
 
     </div>
 </div>

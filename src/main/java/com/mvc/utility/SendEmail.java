@@ -121,7 +121,7 @@ public class SendEmail {
                     "                                                </tr>\n" +
                     "                                                <tr>\n" +
                     "                                                    <td style=\"font-size: 14px; line-height: 18px; color: #666666; padding-bottom: 25px;\">\n" +
-                    "                                                        <strong>Order Number:</strong> 001 | <strong>Order Date:</strong> 21-Nov-19\n" +
+                    "                                                        <strong>Order Number:</strong> "+oid+" | <strong>Order Date:</strong> "+nowDate+"\n" +
                     "                                                    </td>\n" +
                     "                                                </tr>\n" +
                     "                                            </tbody>\n" +
@@ -156,6 +156,7 @@ public class SendEmail {
                     "                                                        Phuong Linh Chieu\n" +
                     "                                                    </td>\n" +
                     "                                                    <td style=\"width: 45%; font-size: 14px; line-height: 18px; color: #666666;\">\n" +
+                    "                                                        dia chi\n" +
                     "                                                    </td>\n" +
                     "                                                </tr>\n" +
                     "                                                <tr>\n" +
@@ -163,7 +164,7 @@ public class SendEmail {
                     "                                                        Thanh Pho Thu Duc, Viet Nam \n" +
                     "                                                    </td>\n" +
                     "                                                    <td style=\"width: 45%; font-size: 14px; line-height: 18px; color: #666666; padding-bottom: 10px;\">\n" +
-                    "                                                        Michigan, 48335\n" +
+                    "                                                        Viet Nam\n" +
                     "                                                    </td>\n" +
                     "                                                </tr>\n" +
                     "                                            </tbody>\n" +
@@ -206,14 +207,16 @@ public class SendEmail {
                     "                                                    </td>\n" +
                     "                                                </tr>\n" +
                     "                                                <tr>\n" +
-                    "                                                    <td style=\"width: 55%; font-size: 14px; line-height: 18px; color: #666666;\">\n" +
-                    "                                                        Link Detail Bill: "+link+"\n" +
+                    "                                                    <td style=\"width: 55%; font-size: 14px; line-height: 18px; color: #666666; padding-bottom: 10px;\">\n" +
+                    "                                                        Price Ship: 50$\n" +
                     "                                                    </td>\n" +
+                    "                                                    <td style=\"width: 45%; font-size: 14px; line-height: 18px; color: #666666; padding-bottom: 10px;\">\n" +
+                    "                                                        Total: "+total+"\n" +
                     "                                                    </td>\n" +
                     "                                                </tr>\n" +
                     "                                                <tr>\n" +
                     "                                                    <td style=\"width: 55%; font-size: 14px; line-height: 18px; color: #666666; padding-bottom: 10px;\">\n" +
-                    "                                                        Total: "+total+"\n" +
+                    "                                                        Link Detail Bill: "+link+"\n" +
                     "                                                    </td>\n" +
                     "                                                </tr>\n" +
                     "                                                <tr>\n" +

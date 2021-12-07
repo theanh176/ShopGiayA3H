@@ -8,17 +8,17 @@ public class CategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cid", nullable = false)
-    private Integer cid;
+    private int cid;
 
 
     @Column(name = "cname")
     private String cname;
 
-    public Integer getCid() {
+    public int getCid() {
         return cid;
     }
 
-    public void setCid(Integer cid) {
+    public void setCid(int cid) {
         this.cid = cid;
     }
 
