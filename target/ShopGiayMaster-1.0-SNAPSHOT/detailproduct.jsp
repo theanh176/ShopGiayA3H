@@ -21,13 +21,11 @@
 <div class = "card-wrapper">
     <div class = "card">
         <!-- card left -->
+        <c:forEach items="${productid}" var="proid">
         <div class = "product-imgs">
             <div class = "img-display">
                 <div class = "img-showcase">
-                    <img src = "images_detail/shoe_1.jpg" alt = "shoe image">
-                    <img src = "images_detail/shoe_2.jpg" alt = "shoe image">
-                    <img src = "images_detail/shoe_3.jpg" alt = "shoe image">
-                    <img src = "images_detail/shoe_4.jpg" alt = "shoe image">
+                    <img src = "${proid.image}" alt = "shoe image">
                 </div>
             </div>
             <div class = "img-select">
@@ -54,7 +52,7 @@
             </div>
         </div>
         <!-- card right -->
-        <c:forEach items="${productid}" var="proid">
+
         <div class = "product-content">
             <h2 class = "product-title">${ proid.name }</h2>
             <a href = "#" class = "product-link">visit nike store</a>
@@ -68,14 +66,12 @@
             </div>
 
             <div class = "product-price">
-                <p class = "last-price">Old Price: <span>$257.00</span></p>
-                <p class = "new-price">New Price: <span>$249.00 (5%)</span></p>
+                <p class = "new-price">New Price: <span>$${proid.price}</span></p>
             </div>
 
             <div class = "product-detail">
                 <h2>about this item: </h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eveniet veniam tempora fuga tenetur placeat sapiente architecto illum soluta consequuntur, aspernatur quidem at sequi ipsa!</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, perferendis eius. Dignissimos, labore suscipit. Unde.</p>
+                <p>${proid.description}</p>
                 <ul>
                     <li>Color: <span>Black</span></li>
                     <li>Available: <span>in stock</span></li>
@@ -86,11 +82,17 @@
             </div>
 
             <div class = "purchase-info">
-                <input type = "number" min = "0" value = "1">
-                <button type = "button" class = "btn">
+                <form method="POST" action="CartController">
+                <input type = "number" min = "0" value = "1" name="quantity">
+                    <input type="hidden" name="pion" value="${proid.name}">
+                    <input type="hidden" name="productId" value="${proid.id}">
+                    <input type="hidden" name="description" value="${proid.name}">
+                    <input type="hidden" name="price" value="${proid.price}">
+                <button type = "submit" name="action" class = "btn" value="Add To Cart" style="background: #1CA347">
                     Add to Cart <i class = "fas fa-shopping-cart"></i>
                 </button>
-                <button type = "button" class = "btn">Compare</button>
+                </form>
+                <a href="<c:url value = "/index.jsp"/>" class = "btn">Continue Shop</a>
             </div>
             </c:forEach>
             <div class = "social-links">

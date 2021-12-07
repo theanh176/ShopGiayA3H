@@ -101,11 +101,11 @@
                     <table class="table border-0 table-hover">
                         <tr>
                             <td>Sub Total:</td>
-                            <td>${order.totalMoney - 10}$</td>
+                            <td>${order.totalMoney - 50}$</td>
                         </tr>
                         <tr>
                             <td>Deliver:</td>
-                            <td> 10.0$</td>
+                            <td> 50.0$</td>
                         </tr>
                         <tfoot>
                         <tr>

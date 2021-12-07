@@ -52,10 +52,10 @@
 
 <!-- search form  -->
 
-<form action="" id="search-form">
-    <input type="search" placeholder="Search here..." name="" id="search-box">
-    <label for="search-box" class="fas fa-search"></label>
+<form action="search" id="search-form">
+    <input type="search" placeholder="Search here..." name="search" id="search-box">
     <i class="fas fa-times" id="close"></i>
+    <input type="submit" class="btn" value="Search">
 </form>
 <!-- Cart Items -->
 <div class="container-md cart">

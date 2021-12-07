@@ -28,8 +28,8 @@ public class SendEmail {
         boolean test = false;
 
         String toEmail = user.getEmail();
-        String fromEmail = "temporaryleo0512@gmail.com";
-        String password = "tuan0512@";
+        String fromEmail = "haika9781@gmail.com";
+        String password = "100401haidz";
 
         try {
 
@@ -239,9 +239,9 @@ public class SendEmail {
                     "</html>","text/html");
 
 //            //send the message
-//            Transport.send(mess);
-//
-//            test=true;
+            Transport.send(mess);
+
+            test=true;
 
         } catch (Exception e) {
             e.printStackTrace();

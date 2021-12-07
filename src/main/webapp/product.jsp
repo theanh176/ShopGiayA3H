@@ -89,10 +89,10 @@
 
 <!-- search form  -->
 
-<form action="" id="search-form">
-    <input type="search" placeholder="Search here..." name="" id="search-box">
-    <label for="search-box" class="fas fa-search"></label>
+<form action="search" id="search-form">
+    <input type="search" placeholder="Search here..." name="search" id="search-box">
     <i class="fas fa-times" id="close"></i>
+    <input type="submit" class="btn" value="Search">
 </form>
 
 
@@ -121,17 +121,20 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star-half-alt"></i>
                     </div>
-                    <div style="display: flex; align-items: center">
+                    <input type="hidden" name="quantity" value="1" style="width: 30px; height: auto; background: #1A73E8">
+                    <div>
                         <h3 style="margin: unset">${pro.name}</h3>
                         <input type="hidden" name="productId" value="${pro.id}">
                         <input type="hidden" name="pion" value="${pro.name}">
-                        <input type="number" name="quantity" value="1" style="width: 30px; height: auto; margin-left: 120px; background: #1A73E8">
-                    </div>roductId" value="${pro.id}">
+                    </div>
+                    <input type="hidden" name="productId" value="${pro.id}">
                     <input type="hidden" name="description" value="${pro.name}">
                     <input type="hidden" name="price" value="${pro.price}">
                     <p>${ pro.description }</p>
-                    <span class="price">$ ${pro.price}</span>
-                    <input type="submit" name="action" class="btn" value="Add To Cart">
+                    <div style="display: flex; align-items: center">
+                        <span class="price" style="margin-left: 0px">$ ${pro.price}</span>
+                        <input type="submit" name="action" class="btn" value="Add To Cart" style="margin-top: 0px; margin-left: 20px">
+                    </div>
                 </div>
             </div>
             </form>

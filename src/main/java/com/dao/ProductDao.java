@@ -200,4 +200,31 @@ public class ProductDao {
         }
         return null;
     }
+
+    public List<ProductEntity> searchName(String name)
+    {
+        Transaction transaction = null;
+        List<ProductEntity> products = null;
+        Session session = HibernateUtility.getSessionFactory().openSession();
+        try
+        {
+            transaction = session.beginTransaction();
+            Query<ProductEntity> query = session.createQuery("Select u From ProductEntity u Where u.name LIKE '%"+name+"%' ");
+            products = query.list();
+            return products;
+        }
+        catch (Exception e)
+        {
+            if (transaction != null)
+            {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        finally
+        {
+            session.close();
+        }
+        return products;
+    }
 }

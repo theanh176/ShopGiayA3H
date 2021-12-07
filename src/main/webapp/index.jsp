@@ -62,10 +62,10 @@
 
 <!-- search form  -->
 
-<form action="" id="search-form">
-    <input type="search" placeholder="Search here..." name="" id="search-box">
-    <label for="search-box" class="fas fa-search"></label>
+<form action="search" id="search-form">
+    <input type="search" placeholder="Search here..." name="search" id="search-box">
     <i class="fas fa-times" id="close"></i>
+    <input type="submit" class="btn" value="Search">
 </form>
 
 <!-- home section starts  -->
@@ -103,7 +103,7 @@
     <h1 class="heading"> popular dishes </h1>
 
     <div class="box-container">
-        <c:forEach items="${product}" var="pro" begin="${product.size() - 5}" end="${product.size()}" step="1">
+        <c:forEach items="${product}" var="pro" begin="${product.size() - 8}" end="${product.size()}" step="1">
             <form method="POST" action="CartController">
             <div class="box">
             <a href="#" class="fas fa-heart"></a>
@@ -127,87 +127,6 @@
             </div>
             </form>
         </c:forEach>
-
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="<c:url value = "/detailproduct.jsp"/>" class="fas fa-eye"></a>
-            <img src="images/product-2.jpg" alt="">
-            <h3>Fila Ray Prism</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <span>$15.99</span>
-            <a href="#" class="btn">add to cart</a>
-        </div>
-
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="<c:url value = "/detailproduct.jsp"/>" class="fas fa-eye"></a>
-            <img src="images/product-3.png" alt="">
-            <h3>MLB Origin Mule</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <span>$15.99</span>
-            <a href="#" class="btn">add to cart</a>
-        </div>
-
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="<c:url value = "/detailproduct.jsp"/>" class="fas fa-eye"></a>
-            <img src="images/product-4.jpg" alt="">
-            <h3>Puma Rs 9.8 Fresh</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <span>$15.99</span>
-            <a href="#" class="btn">add to cart</a>
-        </div>
-
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="<c:url value = "/detailproduct.jsp"/>" class="fas fa-eye"></a>
-            <img src="images/product-5.jpg" alt="">
-            <h3>Jordan 1 Mid Racer</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <span>$15.99</span>
-            <a href="#" class="btn">add to cart</a>
-        </div>
-
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="<c:url value = "/detailproduct.jsp"/>" class="fas fa-eye"></a>
-            <img src="images/product-6.jpeg" alt="">
-            <h3>Nike Air Force 1 WB</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <span>$15.99</span>
-            <a href="#" class="btn">add to cart</a>
-        </div>
-
     </div>
 
 </section>

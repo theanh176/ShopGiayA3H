@@ -4,6 +4,7 @@ import com.dao.OrderDao;
 import com.entities.OrderEntity;
 import com.mvc.utility.SendEmail;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,9 +45,9 @@ public class OrderController extends HttpServlet  {
             if(test){
                 HttpSession session  = request.getSession();
                 session.setAttribute("authcode", user);
-//                response.sendRedirect("verify.jsp");
+                response.sendRedirect("thanks.jsp");
             }else{
-                out.println("Failed to send verification email");
+                out.println("Please Enter Your Full Email Information Or Your Email Does Not Exist.");
             }
         }
     }
@@ -54,6 +55,7 @@ public class OrderController extends HttpServlet  {
             throws SecurityException, IOException, ServletException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("UTF-8");
 
         String iAction = request.getParameter("action");
 
@@ -67,7 +69,6 @@ public class OrderController extends HttpServlet  {
 
             }
         }
-        response.sendRedirect("cart.jsp");
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
