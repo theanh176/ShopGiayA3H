@@ -1,8 +1,10 @@
 package com.example.shopgiaymaster;
 
 import com.dao.DetailorderDao;
+import com.dao.KhachDao;
 import com.dao.ReportDao;
 import com.entities.DetailorderEntity;
+import com.entities.KhachEntity;
 import com.entities.OrderEntity;
 import com.mvc.utility.HibernateUtility;
 import org.hibernate.Session;
@@ -26,16 +28,16 @@ public class TestData {
 //            List<DetailorderEntity> cats = query.list();
 //            cats.forEach(c -> System.out.println(c.getProduct().getId()));
 
-//            DetailorderDao detailorderDao = new DetailorderDao();
-//            List<DetailorderEntity> detailorderEntities = detailorderDao.getDetailOrderByOid(String.valueOf(61));
-//            detailorderEntities.forEach(c -> System.out.println(c.getProduct().getId()));
+            KhachDao khachDao = new KhachDao();
+            List<KhachEntity> detailorderEntities = khachDao.getKhach();
+            detailorderEntities.forEach(c -> System.out.println(c.getUsername()));
 
-            ReportDao dao = new ReportDao();
-            List<Object[]> ord = dao.getStatsPie();
-            ord.forEach(c -> {
-
-                System.out.printf("Xuat ngay: %s Tổng tiền: %s    %s\n", c[0], c[1]);
-            });
+//            ReportDao dao = new ReportDao();
+//            List<Object[]> ord = dao.getStatsPie();
+//            ord.forEach(c -> {
+//
+//                System.out.printf("Xuat ngay: %s Tổng tiền: %s    %s\n", c[0], c[1]);
+//            });
         } catch (Exception e){
 
         }

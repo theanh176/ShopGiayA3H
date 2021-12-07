@@ -1,6 +1,7 @@
 package com.dao;
 
 import com.entities.KhachEntity;
+import com.entities.ProductEntity;
 import com.mvc.utility.HibernateUtility;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -9,6 +10,32 @@ import org.hibernate.query.Query;
 import java.util.List;
 
 public class KhachDao {
+    public List<KhachEntity> getKhach()
+    {
+        Transaction transaction = null;
+        List<KhachEntity> product = null;
+        Session session = HibernateUtility.getSessionFactory().openSession();
+        try
+        {
+            transaction = session.beginTransaction();
+            Query<KhachEntity> query = session.createQuery("FROM KhachEntity ");
+            product = query.list();
+            return product;
+        }
+        catch (Exception e)
+        {
+            if (transaction != null)
+            {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        finally
+        {
+            session.close();
+        }
+        return product;
+    }
     public boolean saveUser(KhachEntity user,boolean isManager)
     {
         Transaction transaction = null;

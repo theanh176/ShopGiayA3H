@@ -36,7 +36,7 @@ public class LoginController extends HttpServlet {
         if (user != null)
         {
             request.setAttribute("signinTrue", true);
-            url = "/index.jsp";
+            url = "/dashboardAdmin.jsp";
             request.getSession().setAttribute("user", user);
 //            CategoryDao categoryDao = new CategoryDao();
 //            List<CategoryEntity> product = categoryDao.getListCategory();
@@ -49,8 +49,6 @@ public class LoginController extends HttpServlet {
         }
         RequestDispatcher dispatcher = request.getRequestDispatcher(url);
         dispatcher.forward(request, response);
-        System.out.println(userN);
-        System.out.println(passW);
     }
 
 }

@@ -73,6 +73,9 @@ public class OrderController extends HttpServlet  {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws SecurityException, IOException, ServletException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("UTF-8");
         doPost(request, response);
     }
 

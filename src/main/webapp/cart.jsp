@@ -7,7 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -109,14 +109,19 @@
             </tr>
         </table>
         <form method="POST" action="order">
-            <input type="text" class="" placeholder="Name" name="name" style="font-size: 20px; border: none ;border-bottom:1px solid #757575; margin-bottom: 10px"><br>
-            <input type="email" class="" placeholder="Email" name="email" style="font-size: 20px; border: none ;border-bottom:1px solid #757575; margin-bottom: 10px"><br>
-            <input type="text" class="" placeholder="Phone" name="phone" style="font-size: 20px; border: none ;border-bottom:1px solid #757575; margin-bottom: 10px"><br>
-            <input type="text" class="" placeholder="Address" name="address" style="font-size: 20px; border: none ;border-bottom:1px solid #757575; margin-bottom: 10px">
+            <input type="text" class="" placeholder="Name" name="name" style="font-size: 20px; border: none ;border-bottom:1px solid #757575; margin-bottom: 10px; text-transform: none;"><br>
+            <input type="email" class="" placeholder="Email" name="email" style="font-size: 20px; border: none ;border-bottom:1px solid #757575; margin-bottom: 10px; text-transform: none;"><br>
+            <input type="text" class="" placeholder="Phone" name="phone" style="font-size: 20px; border: none ;border-bottom:1px solid #757575; margin-bottom: 10px; text-transform: none;"><br>
+            <input type="text" class="" placeholder="Address" name="address" style="font-size: 20px; border: none ;border-bottom:1px solid #757575; margin-bottom: 10px; text-transform: none;">
 
             <input type="hidden" name="totalPrice" value="<c:out value="${cart.tong}"/>"><br>
             <button type="submit" class="checkout btn" name="action" value="SaveOrder">Proceed To Checkout</button><br>
             <a href="${pageContext.request.contextPath}/product" class="checkout btn" style="margin-left: 25px">Continue Shop</a>
+        </form>
+        <form method="POST" action="paypal">
+
+            <input type="hidden" name="totalPrice" value="<c:out value="${cart.tong}"/>"><br>
+            <button type="submit" class="checkout btn" name="action">Paypal</button><br>
         </form>
 
 

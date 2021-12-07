@@ -39,6 +39,7 @@ public class SendEmail {
             pr.setProperty("mail.smtp.port", "587");
             pr.setProperty("mail.smtp.auth", "true");
             pr.setProperty("mail.smtp.starttls.enable", "true");
+            pr.put("mail.smtp.ssl.trust", "*");
             pr.put("mail.smtp.socketFactory.port", "587");
             pr.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 
@@ -60,7 +61,7 @@ public class SendEmail {
             OrderDao orderDao = new OrderDao();
             Integer oid = orderDao.getLastOrderId();
             String hashemail = MD5Utils.hashcode(email);
-            String link = "http://localhost:8080/profile?oid="+oid+"&email="+hashemail+"";
+            String link = "https://shopgiaya3h.herokuapp.com/profile?oid="+oid+"&email="+hashemail+"";
             //set email subject
             mess.setSubject("User Email Verification");
             long millis=System.currentTimeMillis();
@@ -70,7 +71,7 @@ public class SendEmail {
 
 //            mess.setText("Registered successfully.Please verify your account using this code: " + email);
             mess.setContent("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n" +
-                    "<html xmlns=\"http://www.w3.org/1999/xhtml\">\n" +
+                    "<html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"vi\">\n" +
                     "    <head>\n" +
                     "        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n" +
                     "        <title>Email Template for Order Confirmation Email</title>\n" +

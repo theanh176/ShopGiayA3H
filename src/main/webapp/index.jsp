@@ -9,11 +9,11 @@
   Time: 8:00 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%--<%--%>
-<%--    ProductDao productDao = new ProductDao();--%>
-<%--    List<ProductEntity> product = productDao.getListProduct();--%>
-<%--    request.setAttribute("product", product);--%>
-<%--%>--%>
+<%
+    ProductDao productDao = new ProductDao();
+    List<ProductEntity> product = productDao.getListProduct();
+    request.setAttribute("product", product);
+%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
