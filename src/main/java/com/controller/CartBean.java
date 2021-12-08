@@ -85,9 +85,10 @@ public class CartBean {
 
     }
 
-    public void addCart(String description, String price, String quantity, ProductEntity product) {
+    public void addCart(String description, String price, String quantity, ProductEntity product, String image) {
         double iPrice = Double.parseDouble(price);
         int iQuantity = Integer.parseInt(quantity);
+        String iImage = image;
         CartItemBean cartItem = new CartItemBean();
 
         if (!list.isEmpty()) {
@@ -114,6 +115,7 @@ public class CartBean {
                 cartItem.setProductEntity(product);
                 cartItem.setDescription(product.getName());
                 cartItem.setPrice(product.getPrice());
+                cartItem.setImage(iImage);
                 cartItem.setQuantity(iQuantity);
                 cartItem.setTotalCost(product.getPrice() * iQuantity);
                 list.add(cartItem);
@@ -123,6 +125,7 @@ public class CartBean {
             cartItem.setProductEntity(product);
             cartItem.setDescription(product.getName());
             cartItem.setPrice(product.getPrice());
+            cartItem.setImage(iImage);
             cartItem.setQuantity(iQuantity);
             cartItem.setTotalCost(product.getPrice() * iQuantity);
             list.add(cartItem);

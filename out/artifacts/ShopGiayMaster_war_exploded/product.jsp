@@ -130,6 +130,7 @@
                     <input type="hidden" name="productId" value="${pro.id}">
                     <input type="hidden" name="description" value="${pro.name}">
                     <input type="hidden" name="price" value="${pro.price}">
+                    <input type="hidden" name="image" value="${pro.image}">
                     <p>${ pro.description }</p>
                     <div style="display: flex; align-items: center">
                         <span class="price" style="margin-left: 0px">$ ${pro.price}</span>

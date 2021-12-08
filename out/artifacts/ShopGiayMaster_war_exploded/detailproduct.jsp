@@ -88,6 +88,7 @@
                     <input type="hidden" name="productId" value="${proid.id}">
                     <input type="hidden" name="description" value="${proid.name}">
                     <input type="hidden" name="price" value="${proid.price}">
+                    <input type="hidden" name="image" value="${pro.image}">
                 <button type = "submit" name="action" class = "btn" value="Add To Cart" style="background: #1CA347">
                     Add to Cart <i class = "fas fa-shopping-cart"></i>
                 </button>

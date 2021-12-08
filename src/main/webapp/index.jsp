@@ -108,7 +108,7 @@
             <div class="box">
             <a href="#" class="fas fa-heart"></a>
             <a href="<c:url value = "/detailproductbyid?id=${pro.id}"/>" class="fas fa-eye"></a>
-            <img src="images/product-1.jpg" alt="">
+            <img src="${pro.image}" alt="">
             <h3>${pro.name}</h3>
             <div class="stars">
                 <i class="fas fa-star"></i>
@@ -123,6 +123,7 @@
                 <input type="hidden" name="quantity" value="1" style="width: 30px; height: auto; margin-left: 120px; background: #1A73E8">
                 <input type="hidden" name="description" value="${pro.name}">
                 <input type="hidden" name="price" value="${pro.price}">
+                <input type="hidden" name="image" value="${pro.image}">
                 <input type="submit" name="action" class="btn" value="Add To Cart">
             </div>
             </form>

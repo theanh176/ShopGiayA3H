@@ -76,7 +76,7 @@
         <tr>
                 <tr>
                     <td style="display: flex; align-items: center">
-                        <img src="./images/product-1.jpg" alt="">
+                        <img src="${cartItem.image}" alt="">
                         <c:out value="${cartItem.description}"/>
                     </td>
                     <td>

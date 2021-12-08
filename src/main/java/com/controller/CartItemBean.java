@@ -7,6 +7,7 @@ public class CartItemBean {
     private ProductEntity productEntity;
     private String number;
     private String description;
+    private String image;
     private double price;
     private int quantity;
     private double TotalCost;
@@ -61,5 +62,13 @@ public class CartItemBean {
 
     public void setTotalCost(double TotalCost) {
         this.TotalCost = TotalCost;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
