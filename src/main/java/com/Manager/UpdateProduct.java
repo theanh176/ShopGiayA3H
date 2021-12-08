@@ -17,10 +17,6 @@ public class UpdateProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("utf-8");
-
         String id = request.getParameter("id");
         ProductDao dao = new ProductDao();
         System.out.println(id);
@@ -33,9 +29,9 @@ public class UpdateProduct extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("utf-8");
+        request.setCharacterEncoding("UTF-8");
 
         CategoryEntity category = (new CategoryDao()).getCategoryAdmin(Integer.parseInt(request.getParameter("cid")));
 

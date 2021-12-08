@@ -15,18 +15,16 @@ public class DeleteProduct extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        String action = request.getParameter("action");
-        String id = request.getParameter("id");
-        deleteProduct(request, response);
+        String id = request.getParameter("pid");
+        ProductDao productDao = new ProductDao();
+        productDao.deleteProduct(Integer.parseInt(id));
 
         response.sendRedirect("listProduct");
     }
 
     protected void deleteProduct(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id = request.getParameter("id");
-        ProductDao productDao = new ProductDao();
-        productDao.deleteProduct(Integer.parseInt(id));
+
     }
 }
 

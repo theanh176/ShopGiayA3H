@@ -18,6 +18,6 @@ public class DeleteCategory extends HttpServlet {
         CategoryDao categoryDao = new CategoryDao();
         categoryDao.deleteCategory(id);
 
-        response.sendRedirect("listProduct");
+        response.sendRedirect("listCategory");
     }
 }

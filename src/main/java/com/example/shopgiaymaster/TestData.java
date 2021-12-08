@@ -2,7 +2,6 @@ package com.example.shopgiaymaster;
 
 import com.dao.DetailorderDao;
 import com.dao.KhachDao;
-import com.dao.ReportDao;
 import com.entities.DetailorderEntity;
 import com.entities.KhachEntity;
 import com.entities.OrderEntity;

@@ -23,7 +23,7 @@ public class ReadProduct extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
         String url;
-        url = "/listProduct.jsp";
+        url = "/productAdmin.jsp";
         ProductDao productDao = new ProductDao();
         List<ProductEntity> product = productDao.getListProduct();
         request.setAttribute("product", product);

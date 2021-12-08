@@ -21,18 +21,55 @@ public class CreateProduct extends HttpServlet {
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
+        String action = request.getParameter("action");
+        System.out.println(action);
+        if(action == null) {}
+        else if (action.equals("Update"))
+        {
+            updatePro(request, response);
+        }
+        else if(action.equals("Create")) {
+            insertPro(request, response);
+        }
+        response.sendRedirect("listProduct");
+    }
+
+    protected void updatePro(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException{
+        CategoryEntity category = (new CategoryDao())
+                .getCategoryAdmin(
+                Integer.parseInt(request.getParameter("cid")));
+
+        ProductEntity product = new ProductEntity();
+        product.setId(Integer.parseInt(request.getParameter("pid")));
+        product.setName(request.getParameter("name"));
+        product.setDescription(request.getParameter("description"));
+        product.setPrice(Double.parseDouble(request.getParameter("price")));
+        product.setImage(request.getParameter("images"));
+        product.setTitle(request.getParameter("title"));
+        product.setCateId(category);
+        product.setSaleId(Integer.parseInt(request.getParameter("saleID")));
+
+        ProductDao pro = new ProductDao();
+        pro.updateProduct(product);
+    }
+
+    protected void insertPro(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException{
         CategoryEntity category = (new CategoryDao()).getCategoryAdmin(
                 Integer.parseInt(request.getParameter("cid")));
         ProductEntity product = new ProductEntity();
         product.setName(request.getParameter("name"));
         product.setPrice(Double.parseDouble(request.getParameter("price")));
-        product.setImage(request.getParameter("image"));
+        product.setImage(request.getParameter("images"));
         product.setTitle(request.getParameter("title"));
         product.setDescription(request.getParameter("description"));
         product.setCateId(category);
+        if(request.getParameter("saleID") != null || !request.getParameter("saleID").equals("")) {
+            product.setSaleId(Integer.parseInt(request.getParameter("saleID")));
+        }
 
         ProductDao dao = new ProductDao();
         dao.insertProduct(product);
-        response.sendRedirect("listProduct");
     }
 }

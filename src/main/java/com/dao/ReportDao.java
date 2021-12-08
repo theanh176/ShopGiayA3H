@@ -11,6 +11,8 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -92,55 +94,36 @@ public class ReportDao {
         return null;
     }
 
-//    public List<Object[]> getStatsPie1()
-//    {
-//        Transaction transaction = null;
-//        List<Object[]> objects = null;
-//        Session session = HibernateUtility.getSessionFactory().openSession();
-//        try
-//        {
-//            Calendar cal = Calendar.getInstance();
-//            cal.add(Calendar.DATE, -7);
-//
-//            transaction = session.beginTransaction();
-////            Query<Object[]> query = session.createQuery("SELECT category, sum(Quantity) FROM DetailOrderEntity, ProductEntity where DetailOrderEntity.product.id = ProductEntity.id");
-////            Query<Object[]> query = session.createQuery("SELECT category, sum(Quantity) as soluong FROM DetailOrderEntity , OrderEntity , ProductEntity \n" +
-////                    "where DetailOrderEntity.orderEntity.id = OrderEntity.id and DetailOrderEntity.product.id = ProductEntity.id and state='delivered'" +
-////                    "and purchaseDate >=: aDate and purchaseDate <=: bDate group by category");
-//            Query<Object[]> query1 = session.createQuery("SELECT quantity FROM DetailOrderEntity , OrderEntity , ProductEntity \n" +
-//                    "where DetailOrderEntity.orderEntity.id=OrderEntity.id and DetailOrderEntity.product.id =ProductEntity.id");
-////            query.setParameter("aDate", cal.getTime());
-////            query.setParameter("bDate", new Date());
-//            objects = query1.list();
-//            return objects;
-//        }
-//        catch (Exception e)
-//        {
-//            if (transaction != null)
-//            {
-//                transaction.rollback();
-//            }
-//            e.printStackTrace();
-//        }
-//        finally
-//        {
-//            session.close();
-//        }
-//        return objects;
-//    }
-
-    public List<DetailorderEntity> getOrder1() {
+    public List<Object[]> getStatsLine() {
         Session session = factory.openSession();
         try {
             CriteriaBuilder builder = session.getCriteriaBuilder();
-            CriteriaQuery<DetailorderEntity> query = builder.createQuery(DetailorderEntity.class);
-            Root<DetailorderEntity> root = query.from(DetailorderEntity.class);
-            query.select(root);
+            CriteriaQuery<Object[]> query = builder.createQuery(Object[].class);
+            Root<OrderEntity> root = query.from(OrderEntity.class);
+            query.multiselect(
+                    builder.function("MONTH", Integer.class, root.get("purchaseDate")),
+                    builder.sum(root.get("totalMoney")));
 
-//            List<ProductEntity> products = session.createQuery(query).getResultList();
-//            products.forEach(p -> {
-//                System.out.printf("%s\n", p.getName());
-//            });
+            Calendar cal1 = Calendar.getInstance();
+            cal1.add(Calendar.MONTH, -7);
+
+            Calendar cal2 = Calendar.getInstance();
+            cal2.add(Calendar.MONTH, -1);
+
+            SimpleDateFormat formatter = new SimpleDateFormat("MM");
+            Integer strDate1 = Integer.parseInt(formatter.format(cal1.getTime()));
+            Integer strDate2 = Integer.parseInt(formatter.format(cal2.getTime()));
+            System.out.println("Date Format with MM: " + strDate2);
+
+            Predicate d1 = builder.lessThanOrEqualTo(builder.function("MONTH", Integer.class, root.get("purchaseDate")),strDate2);
+            Predicate d2 = builder.greaterThanOrEqualTo(builder.function("MONTH", Integer.class, root.get("purchaseDate")),strDate1);
+            query.where(builder.and(d1, d2));
+
+            query.orderBy(builder.asc(builder.function("MONTH", Integer.class, root.get("purchaseDate"))));
+
+            query.groupBy(builder.function("MONTH", Integer.class, root.get("purchaseDate")));
+
+
             return  session.createQuery(query).getResultList();
         } catch (Exception e) {
             e.printStackTrace();
@@ -148,4 +131,126 @@ public class ReportDao {
         }
         return null;
     }
+
+    public List<Object[]> getStatsDoughnut() {
+        Session session = factory.openSession();
+        try {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Object[]> query = builder.createQuery(Object[].class);
+            Root<DetailorderEntity> root = query.from(DetailorderEntity.class);
+            query.multiselect(builder.sum(root.get("quantity")),
+                    root.get("product").get("cateId").get("cname"));
+
+//            Calendar cal1 = Calendar.getInstance();
+//            cal1.add(Calendar.MONTH, -2);
+//
+            Calendar cal2 = Calendar.getInstance();
+            cal2.add(Calendar.MONTH, -1);
+
+            SimpleDateFormat formatter = new SimpleDateFormat("MM");
+//            Integer strDate1 = Integer.parseInt(formatter.format(cal1.getTime()));
+            Integer strDate2 = Integer.parseInt(formatter.format(cal2.getTime()));
+//
+//            Integer date3 = Integer.parseInt(formatter.format(date));
+//            System.out.println("Date Format with MM: " + strDate1);
+
+//            Predicate d1 = builder.lessThanOrEqualTo(builder.function("MONTH", Integer.class, root.get("orderEntity").get("purchaseDate")),strDate2);
+//            Predicate d2 = builder.greaterThanOrEqualTo(builder.function("MONTH", Integer.class, root.get("orderEntity").get("purchaseDate")),strDate1);
+            query.where(builder.equal(builder.function("MONTH", Integer.class, root.get("orderEntity").get("purchaseDate")),strDate2));
+
+
+            query.groupBy(root.get("product").get("cateId").get("cid"));
+
+
+            return  session.createQuery(query).getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        }
+        return null;
+    }
+
+    public Double getStatsRevenue(int month) {
+        Session session = factory.openSession();
+        try {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Double> query = builder.createQuery(Double.class);
+            Root<OrderEntity> root = query.from(OrderEntity.class);
+            query.multiselect(
+                    builder.sum(root.get("totalMoney")));
+            query.where(builder.equal(builder.function("MONTH", Integer.class, root.get("purchaseDate")),month));
+
+            return  session.createQuery(query).getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        }
+        return null;
+    }
+
+    public List<Double> revenueMonthly() {
+        Calendar cal1 = Calendar.getInstance();
+        cal1.add(Calendar.MONTH, -2);
+
+        Calendar cal2 = Calendar.getInstance();
+        cal2.add(Calendar.MONTH, -1);
+
+        SimpleDateFormat formatter = new SimpleDateFormat("MM");
+        Integer strDate1 = Integer.parseInt(formatter.format(cal1.getTime()));
+        Integer strDate2 = Integer.parseInt(formatter.format(cal2.getTime()));
+
+        Double objects1 = getStatsRevenue(strDate1);
+        Double objects2 = getStatsRevenue(strDate2);
+
+        Double reVe = objects2 - objects1;
+        Double divRev = reVe/objects1*100;
+        divRev = (double) Math.ceil(divRev * 1) / 1;
+        List<Double> strObj = new ArrayList<>();
+        strObj.add(objects2);
+        strObj.add(divRev);
+        return strObj;
+    }
+
+    public Long getStatsOrder(int month) {
+        Session session = factory.openSession();
+        try {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Long> query = builder.createQuery(Long.class);
+            Root<OrderEntity> root = query.from(OrderEntity.class);
+            query.multiselect(
+                    builder.count(root.get("oid")));
+            query.where(builder.equal(builder.function("MONTH", Integer.class, root.get("purchaseDate")),month));
+
+            return  session.createQuery(query).getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        }
+        return null;
+    }
+
+    public List<Long> orderMonthly() {
+        Calendar cal1 = Calendar.getInstance();
+        cal1.add(Calendar.MONTH, -2);
+
+        Calendar cal2 = Calendar.getInstance();
+        cal2.add(Calendar.MONTH, -1);
+
+        SimpleDateFormat formatter = new SimpleDateFormat("MM");
+        Integer strDate1 = Integer.parseInt(formatter.format(cal1.getTime()));
+        Integer strDate2 = Integer.parseInt(formatter.format(cal2.getTime()));
+
+        Long objects1 = getStatsOrder(strDate1);
+        Long objects2 = getStatsOrder(strDate2);
+//        System.out.printf("%d  %d \n", objects1, objects2);
+
+        Long reVe = objects2 - objects1;
+        Long divRev = reVe/objects1*100;
+        List<Long> strObj = new ArrayList<>();
+        strObj.add(objects2);
+        strObj.add(divRev);
+//        System.out.printf("%d  %d",strObj.get(0), strObj.get(1));
+        return strObj;
+    }
+
 }

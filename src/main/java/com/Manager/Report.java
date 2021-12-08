@@ -20,22 +20,19 @@ public class Report extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
         String url;
-        url = "/dashboard.jsp";
+        url = "/dashboardAdmin.jsp";
         ReportDao dao = new ReportDao();
-        List<Object[]> repC = dao.getStatsColumn();
+        List<Double> revenue = dao.revenueMonthly();
+        List<Long> orders = dao.orderMonthly();
+        List<Object[]> repL = dao.getStatsLine();
 
-        List<Object[]> repP = dao.getStatsPie();
-
-        String mes = "hello";
-        request.setAttribute("mes", mes);
-        request.setAttribute("reportColumn", repC);
-        request.setAttribute("reportPie", repP);
+        List<Object[]> repD = dao.getStatsDoughnut();
 
 
-//        rep.forEach(c -> {
-//
-//            System.out.printf("Xuat ngay: %s Tổng tiền: %s %s\n", c[0].toString(), c[1].toString(), c[2].toString());
-//        });
+        request.setAttribute("reportLine", repL);
+        request.setAttribute("reportDoughnut", repD);
+        request.setAttribute("revenueM", revenue);
+        request.setAttribute("orderM", orders);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher(url);
         dispatcher.forward(request, response);

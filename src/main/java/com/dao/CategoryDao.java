@@ -113,8 +113,8 @@ public class CategoryDao {
             CriteriaBuilder builder = session.getCriteriaBuilder();
             CriteriaUpdate<CategoryEntity> update = builder.createCriteriaUpdate(CategoryEntity.class);
             Root<CategoryEntity> root = update.from(CategoryEntity.class);
-            update.set(root.get("name"), category.getCname());
-            update.where(builder.equal(root.get("id"), category.getCid()));
+            update.set(root.get("cname"), category.getCname());
+            update.where(builder.equal(root.get("cid"), category.getCid()));
 
             session.createQuery(update).executeUpdate();
 
