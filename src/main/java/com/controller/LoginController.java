@@ -37,6 +37,8 @@ public class LoginController extends HttpServlet {
         {
             request.setAttribute("signinTrue", true);
             url = "dashboard";
+            response.sendRedirect(url);
+
             request.getSession().setAttribute("user", user);
 //            CategoryDao categoryDao = new CategoryDao();
 //            List<CategoryEntity> product = categoryDao.getListCategory();
@@ -46,9 +48,8 @@ public class LoginController extends HttpServlet {
         {
             request.setAttribute("signinFalse", true);
             url = "/login.jsp";
+            response.sendRedirect(url);
         }
-        RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-        dispatcher.forward(request, response);
     }
 
 }

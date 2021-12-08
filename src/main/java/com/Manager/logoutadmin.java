@@ -17,7 +17,7 @@ public class logoutadmin extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         System.out.printf("Da vao");
         HttpSession session = request.getSession();
-        session.removeAttribute("account");
+        session.removeAttribute("user");
         System.out.printf("Ket thuc");
         response.sendRedirect("login.jsp");
     }
