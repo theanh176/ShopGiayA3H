@@ -52,7 +52,7 @@
         <i class="fas fa-search" id="search-icon"></i>
         <a href="" class="fas fa-heart"></a>
         <a href="<c:url value = "/cart.jsp"/>" class="fas fa-shopping-cart"></a>
-        <a href="<c:url value = "/register.jsp"/>" class="fas fa-user-plus"></a>
+        <a href="#" class="fas fa-user-plus"></a>
         <a href="<c:url value = "/login.jsp"/>" class="fas fa-sign-in-alt"></a>
     </div>
 

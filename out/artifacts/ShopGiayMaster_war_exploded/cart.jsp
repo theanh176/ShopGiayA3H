@@ -41,7 +41,7 @@
         <i class="fas fa-search" id="search-icon"></i>
         <a href="" class="fas fa-heart"></a>
         <a href="<c:url value = "/cart.jsp"/>" class="fas fa-shopping-cart" style="background: limegreen"></a>
-        <a href="<c:url value = "/register.jsp"/>" class="fas fa-user-plus"></a>
+        <a href="#" class="fas fa-user-plus"></a>
         <a href="<c:url value = "/login.jsp"/>" class="fas fa-sign-in-alt"></a>
 
     </div>
@@ -115,16 +115,10 @@
             <input type="text" class="" placeholder="Address" name="address" style="font-size: 20px; border: none ;border-bottom:1px solid #757575; margin-bottom: 10px; text-transform: none;">
 
             <input type="hidden" name="totalPrice" value="<c:out value="${cart.tong}"/>"><br>
-            <button type="submit" class="checkout btn" name="action" value="SaveOrder">Proceed To Checkout</button><br>
-            <a href="${pageContext.request.contextPath}/product" class="checkout btn" style="margin-left: 25px">Continue Shop</a>
+            <button type="submit" class="checkout btn" name="action" value="SaveOrder" style="padding-right: 35px;padding-left: 35px">Proceed To Checkout</button><br>
+            <button type="submit" class="checkout btn" name="action" value="Update" style="background: royalblue;">Checkout With Paypal</button><br>
+            <a href="${pageContext.request.contextPath}/product" class="checkout btn" style="padding-right: 60px;padding-left: 60px">Continue Shop</a>
         </form>
-        <form method="POST" action="paypal">
-
-            <input type="hidden" name="totalPrice" value="<c:out value="${cart.tong}"/>"><br>
-            <button type="submit" class="checkout btn" name="action">Paypal</button><br>
-        </form>
-
-
     </div>
 </div>
 <!-- footer section starts  -->

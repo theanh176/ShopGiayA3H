@@ -1,7 +1,9 @@
 package com.controller;
 
 import com.dao.OrderDao;
+import com.dao.ProductDao;
 import com.entities.OrderEntity;
+import com.entities.ProductEntity;
 import com.mvc.utility.SendEmail;
 
 import javax.servlet.RequestDispatcher;
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "OrderControl", urlPatterns = {"/order","/Order"})
 public class OrderController extends HttpServlet  {
@@ -64,7 +67,8 @@ public class OrderController extends HttpServlet  {
                 saveOrder(request);
                 processRequest(request, response);
             } else if (iAction.equals("Update")) {
-
+                saveOrderPaypal(request);
+                payPal(request,response);
             } else if (iAction.equals("Delete")) {
 
             }
@@ -120,6 +124,66 @@ public class OrderController extends HttpServlet  {
             cartItemBeans.add((CartItemBean)object);
         }
         System.out.println(orderEntity);
+        orderDao.insertOrderAndDetail(orderEntity,cartItemBeans);
+    }
+
+    protected void payPal(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        String address = request.getParameter("address");
+        String totalPrice = request.getParameter("totalPrice");
+
+        String url;
+        url = "/payment.jsp";
+        request.setAttribute("email", email);
+        request.setAttribute("phone", phone);
+        request.setAttribute("totalPrice", totalPrice);
+        RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+        dispatcher.forward(request, response);
+    }
+
+    protected void saveOrderPaypal(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        String address = request.getParameter("address");
+
+        System.out.println("email: "+email);
+
+        CartBean cartBean = null;
+
+        Object objCartBean = session.getAttribute("cart");
+
+        if (objCartBean != null) {
+            cartBean = (CartBean) objCartBean;
+        } else {
+            cartBean = new CartBean();
+            session.setAttribute("cart", cartBean);
+        }
+
+        OrderEntity orderEntity = new OrderEntity();
+        orderEntity.setEmail(email);
+        orderEntity.setPhone(phone);
+        orderEntity.setAddress(address);
+        orderEntity.setTotalMoney(cartBean.getTong());
+        orderEntity.setTotalQuantity(cartBean.getQuantity());
+        orderEntity.setState("Complete");
+
+        //lay ngay gio hien tai
+        long millis=System.currentTimeMillis();
+        java.sql.Date nowDate=new java.sql.Date(millis);
+
+        orderEntity.setPurchaseDate(nowDate);
+
+        OrderDao orderDao = new OrderDao();
+
+        ArrayList<CartItemBean> cartItemBeans = new ArrayList<>();
+        for(Object object : cartBean.getList()){
+            cartItemBeans.add((CartItemBean)object);
+        }
         orderDao.insertOrderAndDetail(orderEntity,cartItemBeans);
     }
 }
