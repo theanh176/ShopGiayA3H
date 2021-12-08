@@ -66,6 +66,10 @@ public class OrderController extends HttpServlet  {
             if (iAction.equals("SaveOrder")) {
                 saveOrder(request);
                 processRequest(request, response);
+                HttpSession session = request.getSession();
+                Object objCartBean = session.getAttribute("cart");
+                objCartBean = null;
+                session.setAttribute("cart", objCartBean);
             } else if (iAction.equals("Update")) {
                 saveOrderPaypal(request);
                 payPal(request,response);
