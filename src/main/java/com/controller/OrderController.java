@@ -45,14 +45,12 @@ public class OrderController extends HttpServlet  {
             boolean test = sm.sendEmail(user, email, name, phone, address, total, link);
 
             //check if the email send successfully
-            HttpSession session  = request.getSession();
-            if(session.getAttribute("authcode")==null){
-                if(test){
-                    session.setAttribute("authcode", user);
-                    response.sendRedirect("thanks.jsp");
-                }else{
-                    out.println("Please Enter Your Full Email Information Or Your Email Does Not Exist.");
-                }
+            if(test){
+                HttpSession session  = request.getSession();
+                session.setAttribute("authcode", user);
+                response.sendRedirect("thanks.jsp");
+            }else{
+                out.println("Please Enter Your Full Email Information Or Your Email Does Not Exist.");
             }
         }
     }
